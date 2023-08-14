@@ -1,0 +1,569 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>nopStation Cart Mobile App</title>
+<link rel="apple-touch-icon" href="https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@b00a2d0486596e73dd7326beacf352c639623a0e/commons/img/logo.png">
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@b00a2d0486596e73dd7326beacf352c639623a0e/commons/img/logo.png">
+<link href="https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@d6562a79075e061305ccfdb82f01e5e195e2d307/spark/css/spark-style.css" rel="stylesheet" />
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@7cc78ce/spark/js/jsontree.js"></script>
+<style type="text/css"></style></head><body class="spa bdd-report dark">
+  <div class="app">
+    <div class="layout">
+<div class="header navbar">
+<div class="vheader">
+<div class="nav-logo">
+<a href="#">
+<div class="logo" style="background-image: url('https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@b00a2d0486596e73dd7326beacf352c639623a0e/commons/img/logo.png')"></div>
+</a>
+</div>
+<ul class="nav-left">
+<li class="search-box">
+<a class="search-toggle" href="#">
+<i class="search-icon fa fa-search"></i>
+<i class="search-icon-close fa fa-close"></i>
+</a>
+</li>
+<li class="search-input"><input id="search-tests" class="form-control" type="text" placeholder="Search..."></li>
+</ul>
+<ul class="nav-right">
+<li class="m-r-10">
+<a href="#"><span class="badge badge-primary">Test Report</span></a>
+</li>
+<li class="m-r-10">
+<a href="#"><span class="badge badge-primary">Aug 24, 2022 05:27:43 PM</span></a>
+</li>
+</ul>
+</div>
+</div><div class="side-nav">
+<div class="side-nav-inner">
+<ul class="side-nav-menu">
+<li class="nav-item dropdown" onclick="toggleView('dashboard-view')">
+<a id="nav-dashboard" class="dropdown-toggle" href="#">
+<span class="ico"><i class="fa fa-bar-chart"></i></span>
+</a>
+</li>
+<li class="nav-item dropdown" onclick="toggleView('test-view')">
+<a id="nav-test" class="dropdown-toggle" href="#">
+<span class="ico"><i class="fa fa-list"></i></span>
+</a>
+</li>
+<li class="nav-item dropdown" onclick="toggleView('exception-view')">
+<a id="nav-exception" class="dropdown-toggle" href="#">
+<span class="ico"><i class="fa fa-bug"></i></span>
+</a>
+</li>
+</ul>
+</div>
+</div>      <div class="vcontainer">
+        <div class="main-content">
+<div class="container-fluid p-4 view dashboard-view">
+<div class="row">
+<div class="col-md-3">
+<div class="card"><div class="card-body">
+<p class="m-b-0">Started</p>
+<h3>Aug 24, 2022 05:27:43 PM</h3>
+</div></div>
+</div>
+<div class="col-md-3">
+<div class="card"><div class="card-body">
+<p class="m-b-0">Ended</p>
+<h3>Aug 24, 2022 05:29:50 PM</h3>
+</div></div>
+</div>
+<div class="col-md-3">
+<div class="card"><div class="card-body">
+<p class="m-b-0 text-pass">Features Passed</p>
+<h3>0</h3>
+</div></div>
+</div>
+<div class="col-md-3">
+<div class="card"><div class="card-body">
+<p class="m-b-0 text-fail">Features Failed</p>
+<h3>1</h3>
+</div></div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-4">
+<div class="card">
+<div class="card-header">
+<h6 class="card-title">Features</h6>
+</div>
+<div class="card-body">
+<div class="">
+<canvas id='parent-analysis' width='115' height='90'></canvas>
+</div>
+</div>
+<div class="card-footer">
+<div><small data-tooltip='0%'>
+<b>0</b> features passed
+</small>
+</div>
+<div>
+<small data-tooltip='100%'><b>1</b> features failed,
+<b>0</b> skipped, <b data-tooltip='0%'>0</b> others
+</small>
+</div>
+</div>
+</div>
+</div>
+<div class="col-md-4">
+<div class="card">
+<div class="card-header">
+<h6 class="card-title">Scenarios</h6>
+</div>
+<div class="card-body">
+<div class="">
+<canvas id='child-analysis' width='115' height='90'></canvas>
+</div>
+</div>
+<div class="card-footer">
+<div><small data-tooltip='0%'><b>0</b> scenarios passed</small></div>
+<div>
+<small data-tooltip='100%'><b>2</b> scenarios failed,
+<b>0</b> skipped, <b data-tooltip='%'>0</b> others
+</small>
+</div>
+</div>
+</div>
+</div>
+<div class="col-md-4">
+<div class="card">
+<div class="card-header">
+<h6 class="card-title">Steps</h6>
+</div>
+<div class="card-body">
+<div class="">
+<canvas id='grandchild-analysis' width='115' height='90'></canvas>
+</div>
+</div>
+<div class="card-footer">
+<div><small data-tooltip='16%'><b>5</b> steps passed</small></div>
+<div>
+<small data-tooltip='6%'><b>2</b> steps failed,
+<b>23</b> skipped, <b data-tooltip='%'>0</b> others
+</small>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><div class="col-md-12">
+<div class="card"><div class="card-header"><p>Timeline</p></div>
+<div class="card-body pt-0"><div>
+<canvas id="timeline" height="120"></canvas>
+</div></div>
+</div>
+</div></div>
+<script>
+var timeline = {
+"Customer add products":122.394
+};
+</script>
+<div class="row">
+<div class="col-lg-6 col-md-12 sysenv-container">
+<div class="card">
+<div class="card-header"><p>System/Environment</p></div>
+<div class="card-body pb-0 pt-0"><table class="table table-sm table-bordered">
+<thead><tr class="bg-gray"><th>Name</th><th>Value</th></tr></thead>
+<tbody>
+<tr>
+<td>user</td>
+<td>Mahmudur Rahman</td>
+</tr>
+<tr>
+<td>AppName</td>
+<td>nopStationCart</td>
+</tr>
+<tr>
+<td>os</td>
+<td>Android</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+</div>
+<script>
+var statusGroup = {
+parentCount: 5,
+passParent: 0,
+failParent: 1,
+warningParent: 0,
+skipParent: 0,
+childCount: 5,
+passChild: 0,
+failChild: 2,
+warningChild: 0,
+skipChild: 0,
+infoChild: 0,
+grandChildCount: 5,
+passGrandChild: 5,
+failGrandChild: 2,
+warningGrandChild: 0,
+skipGrandChild: 23,
+infoGrandChild: 0,
+eventsCount: 5,
+};
+</script><div class="test-wrapper row view test-view">
+  <div class="test-list">
+    <div class="test-list-tools">
+<ul class="tools pull-left">
+<li><a href="#"><span class="font-size-14">Tests</span></a></li>
+</ul>
+<ul class="tools text-right">
+<li class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-exclamation-circle"></i></a>
+<ul id="status-toggle" class="dropdown-menu dropdown-md p-v-0">
+<a class="dropdown-item" status="fail" href="#"><span>Fail</span><span class="status danger"></span></a>
+<div class="dropdown-divider"></div>
+<a status="clear" class="dropdown-item" href="#"><span>Clear</span><span class="pull-right"><i class="fa fa-close"></i></span></a>
+</ul>
+</li>
+</ul>
+</div>    <div class="test-list-wrapper scrollable">
+      <ul class="test-list-item">
+        <li class="test-item"  status="fail" test-id="1"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Customer add products</p>
+            <p class="text-sm">
+              <span>5:27:48 PM</span> / <span>00:02:02:394</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-fail">Customer add products</h5>
+<span class='badge badge-success'>08.24.2022 5:27:48 PM</span>
+<span class='badge badge-danger'>08.24.2022 5:29:50 PM</span>
+<span class='badge badge-default'>00:02:02:394</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=1</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+<div class="m-t-10 m-l-5"></div>
+</div>
+</div>
+<div class="accordion mt-4">
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="2"><span class="badge log fail-bg mr-2">Fail</span>Customer successfully place order as a guest user</div>
+      </div>
+    </div>
+        <div class="">
+          <div class="card-body">
+              <div class="step pass-bg" title="Hooks.CustomerProductTest.openApp()">
+                <span>Given Mike on home page after opening nopCart mobile app</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="Hooks.CustomerProductTest.Electronics(java.lang.String)">
+                <span>When Mike click "electronics" from our categories list from home page</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="Hooks.CustomerProductTest.ProductDetails(java.lang.String)">
+                <span>And Mike click to "Nokia Lumia 1020" product details page</span>
+      <div>
+      </div>
+              </div>
+              <div class="step fail-bg" title="Hooks.CustomerProductTest.SelecSize(java.lang.String)">
+                <span>Then Mike select size "Large" from product details page</span>
+      <div>
+        <textarea disabled class="code-block">java.lang.IndexOutOfBoundsException: Index: 1, Size: 0
+	at java.util.ArrayList.rangeCheck(ArrayList.java:657)
+	at java.util.ArrayList.get(ArrayList.java:433)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementListHandler.invoke(LocatingElementListHandler.java:40)
+	at com.sun.proxy.$Proxy28.get(Unknown Source)
+	at pageObject.CustomerProductAdd.DetailsPageSizeAction(CustomerProductAdd.java:58)
+	at Hooks.CustomerProductTest.SelecSize(CustomerProductTest.java:86)
+	at ✽.Mike select size "Large" from product details page(file:///C:/Users/HP/IdeaProjects/Appium/src/test/java/features/Scenarios.feature:8)
+</textarea>
+      
+      </div>
+              </div>
+              <div class="step skip-bg" title="Hooks.CustomerProductTest.QuantityIncrease(java.lang.String)">
+                <span>And Mike click plus button to increase Qty by "2"</span>
+      <div>Step skipped
+      </div>
+              </div>
+              <div class="step skip-bg" title="Hooks.CustomerProductTest.addTocart()">
+                <span>Then Mike click add to cart button to add the product in his cart</span>
+      <div>Step skipped
+      </div>
+              </div>
+              <div class="step skip-bg" title="Hooks.CustomerProductTest.topCart()">
+                <span>Given Mike go to shopping cart by clicking top cart icon</span>
+      <div>Step skipped
+      </div>
+              </div>
+              <div class="step skip-bg" title="Hooks.CustomerProductTest.ChekoutFromShopping()">
+                <span>When Mike click checkout button from shopping cart page</span>
+      <div>Step skipped
+      </div>
+              </div>
+              <div class="step skip-bg" title="Hooks.CustomerProductTest.CheckoutasGuest()">
+                <span>And Mike select checkout as guest from shopping cart page</span>
+      <div>Step skipped
+      </div>
+              </div>
+              <div class="step skip-bg" title="Hooks.CustomerProductTest.billingProcessHandling()">
+                <span>Then Mike input all the details in checkout billing details page and click continue</span>
+      <div>Step skipped
+      </div>
+              </div>
+              <div class="step skip-bg" title="Hooks.CustomerProductTest.shippingmethod(java.lang.String)">
+                <span>And Mike select "Next Day Air" as shipping method and click continue</span>
+      <div>Step skipped
+      </div>
+              </div>
+              <div class="step skip-bg" title="Hooks.CustomerProductTest.MoneyOrders(java.lang.String)">
+                <span>And Mike select "Check/Money Order" as payment method and click continue</span>
+      <div>Step skipped
+      </div>
+              </div>
+              <div class="step skip-bg" title="Hooks.CustomerProductTest.paymentInfo()">
+                <span>And Mike click next button on payment information page</span>
+      <div>Step skipped
+      </div>
+              </div>
+              <div class="step skip-bg" title="Hooks.CustomerProductTest.Confirmation()">
+                <span>Then Mike click confirm button to place the order</span>
+      <div>Step skipped
+      </div>
+              </div>
+              <div class="step skip-bg" title="Hooks.CustomerProductTest.SuccessfulMessage(java.lang.String)">
+                <span>And Verify order place successfully with popup message "Your order has been successfully processed!"</span>
+      <div>Step skipped
+      </div>
+              </div>
+          </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="20"><span class="badge log fail-bg mr-2">Fail</span>Customer successfully place order as a guest user</div>
+      </div>
+    </div>
+        <div class="">
+          <div class="card-body">
+              <div class="step pass-bg" title="Hooks.CustomerProductTest.openApp()">
+                <span>Given Mike on home page after opening nopCart mobile app</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="Hooks.CustomerProductTest.Electronics(java.lang.String)">
+                <span>When Mike click "electronics" from our categories list from home page</span>
+      <div>
+      </div>
+              </div>
+              <div class="step fail-bg" title="Hooks.CustomerProductTest.ProductDetails(java.lang.String)">
+                <span>And Mike click to "Nokia Lumia 1020" product details page</span>
+      <div>
+        <textarea disabled class="code-block">org.openqa.selenium.NoSuchElementException: No elementorg.openqa.selenium.NoSuchElementException: An element could not be located on the page using the given search parameters.
+For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
+Build info: version: '4.4.0', revision: 'e5c75ed026a'
+System info: host: 'LAPTOP-C4C8A1FN', ip: '192.168.0.100', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_202'
+Driver info: io.appium.java_client.android.AndroidDriver
+Command: [af77d714-5da6-4b04-b8cf-11366a686e54, findElement {using=-android uiautomator, value=new UiScrollable(new UiSelector().scrollable(true).resourceId("com.nopstation.nopcommerce.nopstationcart:id/rvProductList")).scrollIntoView(new UiSelector().text("Nokia Lumia 1020").instance(0))}]
+Capabilities {appium:app: C:\Users\HP\IdeaProjects\Ap..., appium:appPackage: com.nopstation.nopcommerce...., appium:automationName: uiautomator2, appium:databaseEnabled: false, appium:desired: {app: C:\Users\HP\IdeaProjects\Ap..., automationName: uiautomator2, deviceName: HUAWEI Y9 2019, platformName: android, platformVersion: 8.1, udid: DEFNW18B08002204}, appium:deviceApiLevel: 27, appium:deviceManufacturer: HUAWEI, appium:deviceModel: JKM-LX1, appium:deviceName: DEFNW18B08002204, appium:deviceScreenDensity: 480, appium:deviceScreenSize: 1080x2340, appium:deviceUDID: DEFNW18B08002204, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:pixelRatio: 3, appium:platformVersion: 8.1.0, appium:statBarHeight: 85, appium:takesScreenshot: true, appium:udid: DEFNW18B08002204, appium:viewportRect: {height: 2137, left: 0, top: 85, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, platformName: ANDROID}
+Session ID: af77d714-5da6-4b04-b8cf-11366a686e54
+For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
+Build info: version: '4.4.0', revision: 'e5c75ed026a'
+System info: host: 'LAPTOP-C4C8A1FN', ip: '192.168.0.100', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_202'
+Driver info: driver.version: unknown
+	at utilities.Common.androidVerticalScrollToTextById(Common.java:102)
+	at pageObject.CustomerProductAdd.scrolltoNokia(CustomerProductAdd.java:48)
+	at Hooks.CustomerProductTest.ProductDetails(CustomerProductTest.java:71)
+	at ✽.Mike click to "Nokia Lumia 1020" product details page(file:///C:/Users/HP/IdeaProjects/Appium/src/test/java/features/Scenarios.feature:7)
+</textarea>
+      
+      </div>
+              </div>
+              <div class="step skip-bg" title="Hooks.CustomerProductTest.SelecSize(java.lang.String)">
+                <span>Then Mike select size "Large" from product details page</span>
+      <div>Step skipped
+      </div>
+              </div>
+              <div class="step skip-bg" title="Hooks.CustomerProductTest.QuantityIncrease(java.lang.String)">
+                <span>And Mike click plus button to increase Qty by "2"</span>
+      <div>Step skipped
+      </div>
+              </div>
+              <div class="step skip-bg" title="Hooks.CustomerProductTest.addTocart()">
+                <span>Then Mike click add to cart button to add the product in his cart</span>
+      <div>Step skipped
+      </div>
+              </div>
+              <div class="step skip-bg" title="Hooks.CustomerProductTest.topCart()">
+                <span>Given Mike go to shopping cart by clicking top cart icon</span>
+      <div>Step skipped
+      </div>
+              </div>
+              <div class="step skip-bg" title="Hooks.CustomerProductTest.ChekoutFromShopping()">
+                <span>When Mike click checkout button from shopping cart page</span>
+      <div>Step skipped
+      </div>
+              </div>
+              <div class="step skip-bg" title="Hooks.CustomerProductTest.CheckoutasGuest()">
+                <span>And Mike select checkout as guest from shopping cart page</span>
+      <div>Step skipped
+      </div>
+              </div>
+              <div class="step skip-bg" title="Hooks.CustomerProductTest.billingProcessHandling()">
+                <span>Then Mike input all the details in checkout billing details page and click continue</span>
+      <div>Step skipped
+      </div>
+              </div>
+              <div class="step skip-bg" title="Hooks.CustomerProductTest.shippingmethod(java.lang.String)">
+                <span>And Mike select "Next Day Air" as shipping method and click continue</span>
+      <div>Step skipped
+      </div>
+              </div>
+              <div class="step skip-bg" title="Hooks.CustomerProductTest.MoneyOrders(java.lang.String)">
+                <span>And Mike select "Check/Money Order" as payment method and click continue</span>
+      <div>Step skipped
+      </div>
+              </div>
+              <div class="step skip-bg" title="Hooks.CustomerProductTest.paymentInfo()">
+                <span>And Mike click next button on payment information page</span>
+      <div>Step skipped
+      </div>
+              </div>
+              <div class="step skip-bg" title="Hooks.CustomerProductTest.Confirmation()">
+                <span>Then Mike click confirm button to place the order</span>
+      <div>Step skipped
+      </div>
+              </div>
+              <div class="step skip-bg" title="Hooks.CustomerProductTest.SuccessfulMessage(java.lang.String)">
+                <span>And Verify order place successfully with popup message "Your order has been successfully processed!"</span>
+      <div>Step skipped
+      </div>
+              </div>
+          </div>
+        </div>
+  </div>
+</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+<div class="test-content scrollable">
+<div class="test-content-tools">
+<ul><li><a class="back-to-test" href="#"><i class="fa fa-arrow-left"></i></a></li></ul>
+</div>
+<div class="test-content-detail"><div class="detail-body"></div></div>
+</div></div>
+<div class="test-wrapper row view exception-view attributes-view">
+<div class="test-list">
+<div class="test-list-tools">
+<ul class="tools pull-left"><li><a href=""><span class="font-size-14">Exception</span></a></li></ul>
+<ul class="tools text-right"><li><a href="#"><span class="badge badge-primary">2</span></a></li></ul>
+</div>
+<div class="test-list-wrapper scrollable">
+<ul class="test-list-item">
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log badge-danger'>1</span>
+</span>
+<p class="name">java.lang.IndexOutOfBoundsException</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>java.lang.IndexOutOfBoundsException</h4>
+<span status="fail" class='badge log badge-danger'>1 failed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="fail">
+<td><span class="badge log fail-bg">Fail</span></td>
+<td>17:28:34 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='7'>Then Mike select size "Large" from product details page</a>
+<div class="">
+<span class="badge badge-default">Customer add products.Customer successfully place order as a guest user.Then Mike select size "Large" from product details page</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log badge-danger'>1</span>
+</span>
+<p class="name">org.openqa.selenium.NoSuchElementException</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>org.openqa.selenium.NoSuchElementException</h4>
+<span status="fail" class='badge log badge-danger'>1 failed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="fail">
+<td><span class="badge log fail-bg">Fail</span></td>
+<td>17:29:31 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='24'>And Mike click to "Nokia Lumia 1020" product details page</a>
+<div class="">
+<span class="badge badge-default">Customer add products.Customer successfully place order as a guest user.And Mike click to "Nokia Lumia 1020" product details page</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="test-content scrollable">
+<div class="test-content-detail">
+<div class="detail-body"></div>
+</div>
+</div>
+</div>        </div>
+      </div>
+    </div>
+  </div>
+<script src="https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@d6562a79075e061305ccfdb82f01e5e195e2d307/spark/js/spark-script.js"></script>
+<script type="text/javascript"></script></body>
+</html>
