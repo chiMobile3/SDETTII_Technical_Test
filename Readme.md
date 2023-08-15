@@ -2,7 +2,6 @@
 
 - Scenarios are defined with [Gherkin
 Syntax](https://cucumber.io/docs/gherkin/).
-
 - Steps are interpreted by [Cucumber](https://cucumber.io/).
 
 - Step implementation language:
@@ -86,46 +85,53 @@ To check ios set up `appium-doctor --ios`
 4) Command to view the list of devices attached `adb devices`
 
 
-# 📌: Repo & Project Setup:
+## 📌 Repo & Project Setup:
 * Create your own repository to store this project and all of your work.  
 * **Fork** or **Clone** this repository (**SDETII_Technical_Test**) to your local machine, and then push your work to your repository.
 
 
-# 📌 Pull Requests and Code Review:  
+## 📌 Pull Requests and Code Review:  
 * This is **optional**, but if you want good feedback on your submitted solutions you can create a **Pull Request** (in _your_ repository) and notify us when it is ready for review. There's an example Pull Request in **this** repository for reference: https://github.com/HelloImKevo/GroovyPaymentApp-Senior/pull/2  
 * Additional information can be found under the [Git Workflow References](#git-workflow-references) section. 
 
 
-# 📌 Expectations:
+# Expectations:
 * Okay, **phew**. If you made it this far, you're in good shape :+1: hopefully that stuff didn't take too much time (it gets easier with practice).  
 * This project is effectively a coding assessment designed to help us identify your **Skills** and **Areas of Expertise** and **Attention to Detail**, while providing you a little bit of exposure to our **Git Workflow**. Finally, The task at hand is right below! 😃 
 
 
-## :pushpin: Create automated scripts to test ecommerce mobile app place order as a guest feature
+## Create automated scripts to test ecommerce mobile app place order as a guest feature
 
 ### write automation scripst to automate the below scenarios
 
-**Scenario: 01** Customer add products in his shopping cart
+```
+Scenario_01: User sorts the items
+   Given: User clicks accept on login prompt 
+   And: User is on the Dashboard
+   When: User chooses 'outdoor' category
+   And: User sorts by lower price  
+   Then: User validate the is sorted correctly  
 
-> **_Given:_** Mike on home page after opening nopCart mobile app  
-> **_When:_** Mike click "electronics" from our categories list from home page  
-> **_And:_** Mike click to "Nokia Lumia 1020" product details page  
-> **_Then:_** Mike select size "Large" from product details page  
-> **_And:_** Mike click plus button to increase Qty by "2"  
-> **_Then:_** Mike click add to cart button to add the product in his cart
+Scenario outline_02: User validates category options
+   Given: User clicks on accept on login prompt
+   Given: User is on the Dashboard
+   When: User picks Category 
+   And: User clicks on Home and Grocery   
+   Then: User enter en difference "options"
+   Then: User is on "options" page
 
-**Scenario: 02** Customer successfully place order as a guest user
+➡️ Examples* Meat&Fish, Fruits&Vegetables, Groceries
 
-> **_Given:_** Mike go to shopping cart by clicking top cart icon  
-> **_When:_** Mike click checkout button from shopping cart page  
-> **_And:_** Mike select checkout as guest from shopping cart page  
-> **_Then:_** Mike input all the details in checkout billing details page and click continue  
-> **_And:_** Mike select "Next Day Air" as shipping method and click continue  
-> **_And:_** Mike select "Check/Money Order" as payment method and click continue  
-> **_And:_** Mike click next button on payment information page  
-> **_Then:_** Mike click confirm button to place the order  
-> **_And:_** Verify order place successfully with popup message "Your order has been successfully processed!"
+Scenario_03 : User submits the form
+   Given: User clicks on accept on login prompt
+   Given: User is on the Dashboard
+   When: User clicks on more
+   And: User chooses contact us 
+   And: User enter en difference "options"
+   Then: User fills out the data
+   And: User submit the form
 
+```
 ### Additional functionalities, that may be covered:
 
 1. The more, the better. Only if it makes sense. Use your imagination and write some additional tests if you feel you
@@ -146,7 +152,7 @@ If possible, record a video to show how your tests are interacting with the mobi
 solution. (Totally not necessary) 😏
 
 
-# 📌 Submission Review Guidelines:  
+## Submission Review Guidelines:  
 * After you push commits to the project, our team will **Review** your work and provide **Constructive Feedback** the day of the interview on how to improve your code readability, code organization, your approach to solving the problem, or sometimes we will just banter about random technology trends or the latest data breaches :grimacing:
 * Oftentimes, code style is **Subjective**, and there's no right or wrong answer, and that's okay! If you disagree with our feedback, let us know why you wrote it that way - we look forward to learning new things and better practices from you :grin:  
 * Code style and consistency is important to us - we take pride in every line of code we write, and encourage you to do the same.
@@ -158,7 +164,7 @@ solution. (Totally not necessary) 😏
   * Does the **Code Architecture** follow recommended developer patterns?
 
 
-# 📌 Questions or Concerns?  
+## Questions or Concerns?  
 * For any company-related or interview-related questions, reach out to your point-of-contact (likely a **Hiring Manager**).  
 * If you would like to keep your work in a **private repository**, please notify the **Hiring Manager**, and they will provide you a list of email addresses for the code reviewers that you'll need to invite as collaborators to your repository.  
 * If you have **technical questions** or need assistance with this project, ask the **Hiring Manager**, and they will provide you with the email addresses of one of our team members, and you can email us your question directly, and we will do our best to help. Good luck and Happy Coding!! 💻  
