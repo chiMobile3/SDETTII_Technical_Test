@@ -1,19 +1,22 @@
 package utilities;
 
 import driver.PageDriver;
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
-import io.appium.java_client.MobileBy;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.Sequence;
 
-import static java.time.Duration.ofSeconds;
-
 import java.time.Duration;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
+
+import static java.time.Duration.ofSeconds;
 
 public class Common {
     /*******************************************
@@ -22,6 +25,7 @@ public class Common {
      * @param element
      * @param value
      */
+
     // send text method sends values in a web element like inputs
     public static void sendText(WebElement element, String value) {
         element.clear();
@@ -35,7 +39,7 @@ public class Common {
      * @param duration
      */
     //This method scrolls from top to bottom
-    public void verticalScroll(WebElement element,int duration) {
+    public void verticalScroll(WebElement element, int duration) {
         //Creating Vertical Scroll Event
         //Scrollable Element
 
@@ -62,6 +66,7 @@ public class Common {
         PageDriver.getCurrentDriver().perform(Arrays.asList(swipe));
 
     }
+
     /**********************
      * Method---------2 TouchAction Scrolling top bottom
      */
@@ -86,6 +91,7 @@ public class Common {
             throw new NoSuchElementException("No element" + e);
         }
     }
+
     /***************************************
      * *************************************
      * This method-----4 stands for scrolling top bottom
@@ -93,15 +99,16 @@ public class Common {
      * @param text
      * Store webelement(must be scrollable and text as a string----call the method passing arguements those are stored in the variable
      */
-    public void androidVerticalScrollToTextById(String id,String text) {
+    public void androidVerticalScrollToTextById(String id, String text) {
         try {
             (PageDriver.getCurrentDriver()).findElement(
                     MobileBy.AndroidUIAutomator(
-                            "new UiScrollable(new UiSelector().scrollable(true)." + "resourceId(\""+ id +"\"))" + ".scrollIntoView(new UiSelector().text(\"" + text + "\").instance(0))")).click();
+                            "new UiScrollable(new UiSelector().scrollable(true)." + "resourceId(\"" + id + "\"))" + ".scrollIntoView(new UiSelector().text(\"" + text + "\").instance(0))")).click();
         } catch (Exception e) {
             throw new NoSuchElementException("No element" + e);
         }
     }
+
     /***************************************
      * *************************************
      * This method-----1 stands for left right scrolling
@@ -109,8 +116,8 @@ public class Common {
      * @param duration
      */
     //This method scrolls from left to right
-    public void horizontalScroll(WebElement element,int duration) {
-        int centerY = element.getRect().y + (element.getSize().height/2 );
+    public void horizontalScroll(WebElement element, int duration) {
+        int centerY = element.getRect().y + (element.getSize().height / 2);
 
         double startX = element.getRect().x + (element.getSize().width * .8);
 
@@ -147,15 +154,74 @@ public class Common {
      * @param text
      * Store webelement(must be scrollable and text as a string----call the method passing arguements those are stored in the variable
      */
-    public void androidHorizontalScrollByText(String id,String text) {
+    public void androidHorizontalScrollByText(String id, String text) {
         try {
             (PageDriver.getCurrentDriver()).findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)."
-                    + "resourceId(\""+id+"\"))" + ".setAsHorizontalList().scrollIntoView(new UiSelector().text(\""+text+"\"))")); }
-        catch (Exception e) {
+                    + "resourceId(\"" + id + "\"))" + ".setAsHorizontalList().scrollIntoView(new UiSelector().text(\"" + text + "\"))"));
+        } catch (Exception e) {
             throw new NoSuchElementException("No element" + e);
         }
     }
 
+    /***********************************************************************************************************
+     * This method is used to tap on a specific element from a list of elements based on the text value.
+     * @param text - string value to find and click from the list of elements
+     * @param listOfItems - list of elements
+     ***********************************************************************************************************/
 
+    public void clickOnItemFromList(String text, List<WebElement> listOfItems) {
+        for (WebElement element : listOfItems) {
+            if (element.getText().equalsIgnoreCase(text)) {
+                element.click();
+                break;
+            }
+        }
     }
+
+    /***********************************************************************************************************
+     * This method is used to sort the list of elements.
+     * @param listToSort - list of elements to sort.
+     * @return sorted list of elements.
+     ***********************************************************************************************************/
+
+    public List<String> getSortedList(List<String> listToSort) {
+        Collections.sort(listToSort);
+        return listToSort;
+    }
+
+    /***********************************************************************************************************
+     * This method is used to generate random email.
+     * @return random email id
+     ***********************************************************************************************************/
+
+    public String randomEmailGenerator() {
+        return generateRandomString(6) + randomIntGenerator() + "@test.com";
+    }
+
+    /***********************************************************************************************************
+     * This method is used to generate random string.
+     * @param wordLength - length of the string
+     * @return random string with requested length
+     ***********************************************************************************************************/
+
+    public String generateRandomString(int wordLength) {
+        Random r = new Random();
+        StringBuilder sb = new StringBuilder(wordLength);
+        for (int i = 0; i < wordLength; i++) {
+            char tmp = (char) ('A' + r.nextInt('Z' - 'A'));
+            sb.append(tmp);
+        }
+        return sb.toString();
+    }
+
+    /***********************************************************************************************************
+     * This method is used to generate random integer value.
+     * @return the random integer value
+     ***********************************************************************************************************/
+
+    public int randomIntGenerator() {
+        Random rand = new Random();
+        return rand.nextInt(1000);
+    }
+}
 

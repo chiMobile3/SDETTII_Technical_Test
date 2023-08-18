@@ -16,32 +16,37 @@ public class Home extends Common {
     /***************
      * All the locators
      */
-    @FindBy(id = "com.nopstation.nopcommerce.nopstationcart:id/btnAccept")
+    @FindBy(id = "btnAccept")
     WebElement btnAccept;
-    @FindBy(className = "android.widget.ImageButton")
-    List<WebElement> menuButton;
-    @FindBy(id = "com.nopstation.nopcommerce.nopstationcart:id/tvProductName")
+    @FindBy(id = "tvProductName")
     List<WebElement> CategoryGroups;
+    @FindBy(id = "navigation_bar_item_icon_view")
+    List<WebElement> bottomNavMenu;
+    @FindBy(id = "navigation_bar_item_small_label_view")
+    List<WebElement> bottomNavText;
 
-    @FindBy(id = "com.nopstation.nopcommerce.nopstationcart:id/rvHomeCategories")
-    WebElement pdName;
-    @FindBy(className = "androidx.recyclerview.widget.RecyclerView")
-    WebElement homeCategoriesContainer;
-
-    //pop up window accept
+    // Click on Accept button to continue.
     public void ClickAccept() {
         btnAccept.click();
     }
 
-    //scroll category
-    public void scrollCategory() throws InterruptedException {
-        androidHorizontalScrollByText("com.nopstation.nopcommerce.nopstationcart:id/rvHomeCategories","Electronics");
-    }
-    //Select electronics
-
-    public void clickEletronics() {
-        CategoryGroups.get(1).click();
-
+    // Perform scroll by category value
+    public void scrollByCategory(String category) {
+        androidHorizontalScrollByText("com.nopstation.nopcommerce.nopstationcart:id/rvHomeCategories", category);
     }
 
+    // Select category from dashboard.
+    public void clickCategory(String category) {
+        clickOnItemFromList(category, CategoryGroups);
+    }
+
+    // Retrieve 'Home' navigation element.
+    public boolean validateUserDefaultScreen() {
+        return (bottomNavMenu.get(1).isDisplayed());
+    }
+
+    // Click on bottom navigation menu item.
+    public void selectBottomNavMenu(String bottomMenu) {
+        clickOnItemFromList(bottomMenu, bottomNavText);
+    }
 }
