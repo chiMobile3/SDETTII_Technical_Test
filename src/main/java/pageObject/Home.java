@@ -16,47 +16,37 @@ public class Home extends Common {
     /***************
      * All the locators
      */
-    @FindBy(id = "com.nopstation.nopcommerce.nopstationcart:id/btnAccept")
+    @FindBy(id = "btnAccept")
     WebElement btnAccept;
-    @FindBy(className = "android.widget.ImageButton")
-    List<WebElement> menuButton;
-    @FindBy(id = "com.nopstation.nopcommerce.nopstationcart:id/tvProductName")
+    @FindBy(id = "tvProductName")
     List<WebElement> CategoryGroups;
-
-    @FindBy(id = "com.nopstation.nopcommerce.nopstationcart:id/rvHomeCategories")
-    WebElement pdName;
-    @FindBy(className = "androidx.recyclerview.widget.RecyclerView")
-    WebElement homeCategoriesContainer;
-    @FindBy(id = "com.nopstation.nopcommerce.nopstationcart:id/navigation_bar_item_icon_view")
+    @FindBy(id = "navigation_bar_item_icon_view")
     List<WebElement> bottomNavMenu;
+    @FindBy(id = "navigation_bar_item_small_label_view")
+    List<WebElement> bottomNavText;
 
-    // pop up window accept
+    // Click on Accept button to continue.
     public void ClickAccept() {
         btnAccept.click();
     }
 
-    // scroll category
-    public void scrollCategory() throws InterruptedException {
-        androidHorizontalScrollByText("com.nopstation.nopcommerce.nopstationcart:id/rvHomeCategories", "Electronics");
+    // Perform scroll by category value
+    public void scrollByCategory(String category) {
+        androidHorizontalScrollByText("com.nopstation.nopcommerce.nopstationcart:id/rvHomeCategories", category);
     }
 
-    // Select electronics
-    public void clickEletronics() {
-        CategoryGroups.get(1).click();
-    }
-
-    // Select 'Outdoor' category from dashboard.
-    public void clickOutdoor() {
-        CategoryGroups.get(2).click();
+    // Select category from dashboard.
+    public void clickCategory(String category) {
+        clickOnItemFromList(category, CategoryGroups);
     }
 
     // Retrieve 'Home' navigation element.
-    public WebElement getHomeMenu() {
-        return bottomNavMenu.get(1);
+    public boolean validateUserDefaultScreen() {
+        return (bottomNavMenu.get(1).isDisplayed());
     }
 
-    // Retrieve 'Category' navigation element.
-    public void selectCategoryBottomMenu() {
-        bottomNavMenu.get(1).click();
+    // Click on bottom navigation menu item.
+    public void selectBottomNavMenu(String bottomMenu) {
+        clickOnItemFromList(bottomMenu, bottomNavText);
     }
 }

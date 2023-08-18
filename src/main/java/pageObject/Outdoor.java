@@ -4,12 +4,12 @@ import driver.PageDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import utilities.Common;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class Outdoor {
+public class Outdoor extends Common {
     public Outdoor() {
         PageFactory.initElements(PageDriver.getCurrentDriver(), this);
     }
@@ -17,16 +17,17 @@ public class Outdoor {
     /***************
      * All the locators
      */
-    @FindBy(xpath = "(//android.widget.ImageView[@content-desc=\"Placeholder\"])[2]")
+    @FindBy(xpath = "(//*[@content-desc=\"Placeholder\"])[2]")
     WebElement sortView;
-    @FindBy(id = "com.nopstation.nopcommerce.nopstationcart:id/otherAttrText")
+    @FindBy(id = "otherAttrText")
     List<WebElement> sortByItems;
-    @FindBy(id = "com.nopstation.nopcommerce.nopstationcart:id/tvProductPrice")
+    @FindBy(id = "tvProductPrice")
     List<WebElement> productPrices;
 
     //Click Sort View Image
-    public void clickSortView() {
+    public void selectSortByValue(String sortValue) {
         sortView.click();
+        clickOnItemFromList(sortValue, sortByItems);
     }
 
     //Select Low Price
@@ -36,15 +37,16 @@ public class Outdoor {
 
     // Extract List of product prices using Java Stream
     public List<String> getListBeforeSort() {
-        return productPrices.stream()
-                .map(n -> n.getText())
-                .collect(Collectors.toList());
+        List<String> listBeforeSort = new ArrayList<String>();
+        for (WebElement e : productPrices) {
+            listBeforeSort.add(e.getText());
+        }
+        return listBeforeSort;
     }
 
-    // TODO: Move this common utility.
-    // Return sorted list of items.
-    public List<String> getSortedList(List<String> listToSort) {
-        Collections.sort(listToSort);
-        return listToSort;
+    public boolean validateSorting() {
+        List<String> listToSort = getListBeforeSort();
+        List<String> sortedList = getSortedList(listToSort);
+        return listToSort.equals(sortedList);
     }
 }
