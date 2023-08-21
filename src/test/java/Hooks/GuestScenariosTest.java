@@ -71,16 +71,6 @@ public class GuestScenariosTest {
     }
 
     //-------------------------
-    @Then("User enter en difference (.+) option")
-    public void user_enter_en_difference_meat_fish_option(String options) {
-        foodAndGroceryPage.ClickFoodAndGroceryDropdownBtn();
-        foodAndGroceryPage.ClickFoodAndGrocerySubGroup(options);
-    }
-
-    @Then("User is on (.+) page")
-    public void user_is_on_meat_fish_page(String optionsPage) {
-        Assert.assertEquals(optionsPage,meatAndFishPage.getCategoryBannerTxt());
-    }
 
     @When("User enter en difference {string}")
     public void user_enter_en_difference(String string) {
